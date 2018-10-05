@@ -19,6 +19,9 @@
   background-color: #4aae9b;
   color: white;
 }
+.autocomplete-error {
+  color: red;
+}
 </style>
 
 <template>
@@ -30,7 +33,9 @@
         v-on:input="onChange"  
         v-on:keydown.down="onArrowDown"
         v-on:keydown.up="onArrowUp"
-        v-on:keydown.enter="onEnter"/>
+        v-on:keydown.enter="onEnter"
+        v-validate="{min:1, max:15}" data-vv-as="field" name="min_field"
+        />
         <span class="icon is-small is-left">
           <i class="fa fa-search"></i>
         </span>
@@ -38,6 +43,7 @@
           <i class="fa fa-check"></i>
         </span>
       </p>
+      <span class="autocomplete-error">{{ errors.first('min_field') }}</span>
       <ul class="autocomplete-results" v-show="isOpen && search.length !== 0">
         <li class="autocomplete-result" v-bind:class="{ 'is-active': index === arrowCounter }" v-for="(result, index) in results" v-bind:key="index">
           <router-link v-bind:to="`/movie-finder/movies/${result.id}`">{{result.title}}</router-link>
