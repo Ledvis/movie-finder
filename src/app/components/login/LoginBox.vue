@@ -1,6 +1,7 @@
 <style scoped>
 .box {
   padding: 30px;
+  margin: 100px;
 }
 .fa {
   margin-right: 5px;

@@ -11,7 +11,15 @@ body {
 }
 
 .container {
+  display: flex;
+  justify-content: center;
   width: 100%;
+  min-height: 100vh;
+}
+
+.columns {
+  flex-grow: 1;
+  padding: 0 10px;
 }
 
 .column--align-center {

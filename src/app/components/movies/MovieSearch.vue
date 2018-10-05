@@ -82,8 +82,7 @@ export default {
       }
     },
     onEnter() {
-      alert("hello");
-      this.search = this.results[this.arrowCounter];
+      this.$router.push(`/movies/${this.results[this.arrowCounter].id}`);
       this.isOpen = false;
       this.arrowCounter = -1;
     },
@@ -95,10 +94,10 @@ export default {
     }
   },
   mounted() {
-    document.addEventListener('click', this.handleClickOutside);
+    document.addEventListener("click", this.handleClickOutside);
   },
   destroyed() {
-    document.removeEventListener('click', this.handleClickOutside);
+    document.removeEventListener("click", this.handleClickOutside);
   }
 };
 </script>
