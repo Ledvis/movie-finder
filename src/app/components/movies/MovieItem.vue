@@ -9,7 +9,6 @@
   position: absolute;
   top: 5px;
   left: 10px;
-  color: #00d1b2;
   cursor: pointer;
 }
 
@@ -27,12 +26,16 @@
 .movie-item__image img {
   object-fit: cover;
 }
+
+.fa-arrow-left:hover {
+  color: rgb(0, 209, 178);
+}
 </style>
 
 <template>
-  <section id="movie-item" class="box">
+  <section id="movie-item" class="box" v-if="movieItem">
     <span class="return-icon" v-on:click="$router.go(-1)">
-      <i class="fa fa-arrow-left is-primary"></i>
+      <i class="fa fa-2x fa-arrow-left"></i>
     </span>
     <div class="movie-item__details">
       <h1 class="title is-4">
@@ -56,7 +59,7 @@ export default {
     movieItem() {
       return this.$store.getters.movieItemFromId(parseInt(this.id));
     },
-    ...mapGetters(["token"])
+    ...mapGetters(["TOKEN"])
   },
   data() {
     return {
@@ -68,12 +71,13 @@ export default {
       axios
         .get(
           `https://api.themoviedb.org/3/movie/${this.id}/videos?api_key=${
-            this.token
+            this.TOKEN
           }&language=en-US`
         )
         .then(response => {
           this.youtubeKey = response.data.results[0].key;
-        });
+        })
+        .catch(err => window.console.log(err));
     }
   },
   created() {

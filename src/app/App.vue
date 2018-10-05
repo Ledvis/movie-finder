@@ -37,7 +37,7 @@ body {
 <template>
   <div id="app">
     <div class="navigation-buttons" v-if="$route.path !== '/login'">
-      <button class="button is-text is-pulled-left" v-on:click="logout">
+      <button class="button is-pulled-left" v-on:click="logout">
         <i class="fa fa-sign-out"></i>
         <span>Logout</span>
       </button>
@@ -71,6 +71,7 @@ export default {
     updateState() {
       this.$store.dispatch("getMovies");
       this.$store.dispatch("getGenres");
+      this.$store.dispatch("getFavoriteItems");
     }
   },
   computed: {

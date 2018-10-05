@@ -141,9 +141,13 @@ export default {
   },
   methods: {
     getGenre(genreId) {
-      return this.genres.find(genre => {
+      const genreObj = this.genres.find(genre => {
         return genre.id === genreId;
-      }).name;
+      });
+
+      if (genreObj) {
+        return genreObj.name;
+      }
     },
     addItemToFavorites() {
       this.$store.dispatch("addFavoriteItem", this.movie);

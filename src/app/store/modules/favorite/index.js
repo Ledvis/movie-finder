@@ -1,16 +1,20 @@
+const arrayMove = require("array-move");
+
 const state = {
   favoriteItems: []
 };
 
 const mutations = {
   ADD_FAVORITE_ITEM(state, payload) {
-    payload.favorite = true;
     state.favoriteItems.push(payload);
   },
   REMOVE_FAVORITE_ITEM(state, payload) {
     state.favoriteItems.splice(payload, 1);
   },
   GET_FAVORITE_ITEMS(state, payload) {
+    state.favoriteItems = payload;
+  },
+  UPDATE_FAVORITE_ITEMS(state, payload) {
     state.favoriteItems = payload;
   }
 };
@@ -25,6 +29,7 @@ const actions = {
       commit("REMOVE_FAVORITE_ITEM", itemIndex);
       localStorage.favoriteItems = JSON.stringify(state.favoriteItems);
     } else {
+      cartItem.favorite = true;
       commit("ADD_FAVORITE_ITEM", cartItem);
       localStorage.favoriteItems = JSON.stringify(state.favoriteItems);
     }
@@ -34,6 +39,20 @@ const actions = {
       "GET_FAVORITE_ITEMS",
       JSON.parse(localStorage.favoriteItems || "[]")
     );
+  },
+  removeAllFavoriteItems({ commit }) {
+    commit("UPDATE_FAVORITE_ITEMS", []);
+    localStorage.removeItem("favoriteItems");
+  },
+  changeItemPosition({ commit }, { item, shift }) {
+    const position = state.favoriteItems.indexOf(item);
+    const shiftedItemsArr = arrayMove(
+      state.favoriteItems,
+      position,
+      position + shift
+    );
+    commit("UPDATE_FAVORITE_ITEMS", shiftedItemsArr);
+    localStorage.favoriteItems = JSON.stringify(shiftedItemsArr);
   }
 };
 

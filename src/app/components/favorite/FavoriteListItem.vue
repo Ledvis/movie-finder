@@ -24,12 +24,14 @@
 <template>
   <div class="box">
     <div class="favorite-item__details">
-      <p class="is-inline">{{item.title}}</p>
+      <p class="is-inline">
+        <router-link v-bind:to="`/movies/${item.id}`">{{item.title}}</router-link>
+      </p>
       <div>
         <span class="favorite-item--price has-text-primary has-text-weight-bold"></span>
         <span>
-          <i class="fa fa-arrow-circle-up favorite-item__modify"></i>
-          <i class="fa fa-arrow-circle-down favorite-item__modify"></i>
+          <i class="fa fa-arrow-circle-up favorite-item__modify"  v-on:click="changeItemPosition({item, shift: -1})"></i>
+          <i class="fa fa-arrow-circle-down favorite-item__modify" v-on:click="changeItemPosition({item, shift: 1})"></i>
         </span>
       </div>
     </div>
@@ -47,6 +49,11 @@ export default {
   props: ["item"],
   computed: {
     ...mapActions(["favoriteItemsQuantity"])
+  },
+  methods: {
+    changeItemPosition(positionObj) {
+      this.$store.dispatch("changeItemPosition", positionObj);
+    }
   }
 };
 </script>

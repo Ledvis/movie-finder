@@ -12,6 +12,7 @@
 }
 
 .favorite--header {
+  margin-top: 20px;
   border-bottom: 1px solid #e8e8e8;
   padding-bottom: 15px;
 }
@@ -34,15 +35,25 @@
 .favorite-remove-all--text .fa {
   padding-right: 5px;
 }
+
+.fa-arrow-left {
+  float: left;
+  cursor: pointer;
+}
+
+.fa-arrow-left:hover {
+  color: rgb(0, 209, 178);
+}
 </style>
 
 <template>
   <div id="favorite">
     <div class="favorite--header has-text-centered">
-      <i class="fa fa-2x fa-shopping-favorite"></i>
+      <i class="fa fa-2x fa-arrow-left" v-on:click="$router.go(-1)"></i>
+      <i class="fa fa-2x fa-bookmark"></i>
     </div>
-    <p class="favorite-empty-text has-text-centered">
-      Add some items to the favorite!
+    <p class="favorite-empty-text has-text-centered" v-if="favoriteItems.length === 0">
+      Add some items to the favorite list!
     </p>
     <ul>
       <li class="favorite-item" v-for="favoriteItem in favoriteItems" v-bind:key="favoriteItem.id">
@@ -52,19 +63,16 @@
         <p>Total Quantity:
           <span class="has-text-weight-bold">{{favoriteItemsQuantity}}</span>
         </p>
-        <p class="favorite-remove-all--text">
+        <button class="favorite-remove-all--text" v-on:click="removeAllFavoriteItems" v-bind:disabled="favoriteItems.length === 0">
           <i class="fa fa-trash"></i>Remove all
-        </p>
+        </button>
       </div>
     </ul>
-    <button class="button is-primary">
-      Checkout (<span class="has-text-weight-bold">$</span>)
-    </button>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import FavoriteListItem from "./FavoriteListItem";
 
 export default {
@@ -74,6 +82,9 @@ export default {
   },
   computed: {
     ...mapGetters(["favoriteItems", "favoriteItemsQuantity"])
+  },
+  methods: {
+    ...mapActions(["removeAllFavoriteItems"])
   }
 };
 </script>
