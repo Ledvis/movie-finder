@@ -1,3 +1,9 @@
+<style scoped>
+.has-text-centered {
+  margin-top: 100px;
+}
+</style>
+
 <template>
   <div class="has-text-centered">
     <h1 class="title">Sorry. Page Not Found :(</h1>
@@ -11,6 +17,3 @@ export default {
   name: "NotFound"
 };
 </script>
-
-<style scoped>
-</style>

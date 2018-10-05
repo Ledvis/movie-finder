@@ -33,13 +33,13 @@
 </style>
 
 <template>
-  <section id="movie-item" class="box" v-if="movieItem">
+  <section id="movie-item" class="box" v-if="item">
     <span class="return-icon" v-on:click="$router.go(-1)">
       <i class="fa fa-2x fa-arrow-left"></i>
     </span>
     <div class="movie-item__details">
       <h1 class="title is-4">
-        <p>{{ movieItem.title }}</p>
+        <p>{{ item.title }}</p>
       </h1>
     </div>
     <div class="movie-item__image">
@@ -58,6 +58,12 @@ export default {
   computed: {
     movieItem() {
       return this.$store.getters.movieItemFromId(parseInt(this.id));
+    },
+    favoriteMovieItem() {
+      return this.$store.getters.favoriteMovieItem(parseInt(this.id));
+    },
+    item() {
+      return this.movieItem || this.favoriteMovieItem;
     },
     ...mapGetters(["TOKEN"])
   },

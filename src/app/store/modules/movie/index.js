@@ -12,6 +12,9 @@ const mutations = {
   LOAD_MOVIES(state, payload) {
     state.movies = [...state.movies, ...payload];
   },
+  REMOVE_MOVIES(state, payload) {
+    state.movies = payload;
+  },
   LOAD_GENRES(state, payload) {
     state.genres = payload;
   },
@@ -47,6 +50,12 @@ const actions = {
       .then(response => {
         commit("LOAD_GENRES", response.data.genres);
       });
+  },
+  removeMovies({ commit }) {
+    return new Promise(resolve => {
+      commit("REMOVE_MOVIES", []);
+      resolve();
+    });
   }
 };
 

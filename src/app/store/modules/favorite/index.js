@@ -65,6 +65,14 @@ const getters = {
         return item;
       }
     });
+  },
+  favoriteMovieItem: state => id => {
+    const arr = JSON.parse(localStorage.favoriteItems);
+    return arr.find(item => {
+      if (item.id === id) {
+        return item;
+      }
+    });
   }
 };
 

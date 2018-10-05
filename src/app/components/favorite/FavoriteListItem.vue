@@ -25,7 +25,7 @@
   <div class="box">
     <div class="favorite-item__details">
       <p class="is-inline">
-        <router-link v-bind:to="`/movies/${item.id}`">{{item.title}}</router-link>
+        <router-link v-bind:to="`/movie-finder/movies/${item.id}`">{{item.title}}</router-link>
       </p>
       <div>
         <span class="favorite-item--price has-text-primary has-text-weight-bold"></span>

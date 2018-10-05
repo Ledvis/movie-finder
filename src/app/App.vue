@@ -44,13 +44,13 @@ body {
 
 <template>
   <div id="app">
-    <div class="navigation-buttons" v-if="$route.path !== '/login'">
+    <div class="navigation-buttons" v-if="$route.path !== '/movie-finder/login'">
       <button class="button is-pulled-left" v-on:click="logout">
         <i class="fa fa-sign-out"></i>
         <span>Logout</span>
       </button>
       <div class="is-pulled-right">
-        <a class="button" v-on:click="$router.push('/favorites')">
+        <a class="button" v-on:click="$router.push('/movie-finder/favorites')">
           <i class="fa fa-bookmark"></i><span>Favorites: {{favoriteItemsQuantity}}</span>
         </a>
       </div>
@@ -72,9 +72,14 @@ export default {
   name: "App",
   methods: {
     logout() {
-      this.$store.dispatch("logout").then(() => {
-        this.$router.push("/login");
-      });
+      this.$store
+        .dispatch("logout")
+        .then(() => {
+          this.$store.dispatch("removeMovies");
+        })
+        .then(() => {
+          this.$router.push("/movie-finder/login");
+        });
     },
     updateState() {
       this.$store.dispatch("getMovies");

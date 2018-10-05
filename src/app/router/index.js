@@ -10,35 +10,34 @@ Vue.use(VueRouter);
 
 const router = new VueRouter({
   mode: "history",
-  routes: [
-    {
-      path: "/",
-      redirect: "/movies"
+  routes: [{
+      path: "/movie-finder/",
+      redirect: "/movie-finder/movies"
     },
     {
       path: "*",
       component: NotFound
     },
     {
-      path: "/movies",
+      path: "/movie-finder/movies",
       component: MoviesList
     },
     {
-      path: "/movies/:id",
+      path: "/movie-finder/movies/:id",
       component: MovieItem,
       props: true
     },
     {
-      path: "/favorites",
+      path: "/movie-finder/favorites",
       component: FavoritesList
     },
     {
-      path: "/login",
+      path: "/movie-finder/login",
       component: LoginBox,
       beforeEnter: (to, from, next) => {
         const token = localStorage.getItem("token");
 
-        if (token) next("/movies");
+        if (token) next("/movie-finder/movies");
         next();
       }
     }
@@ -48,7 +47,7 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   const token = localStorage.getItem("token");
 
-  if (!token && to.path !== "/login") next("/login");
+  if (!token && to.path !== "/movie-finder/login") next("/movie-finder/login");
   else next();
 });
 
