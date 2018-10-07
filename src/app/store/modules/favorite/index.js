@@ -29,7 +29,9 @@ const actions = {
       commit("REMOVE_FAVORITE_ITEM", itemIndex);
       localStorage.favoriteItems = JSON.stringify(state.favoriteItems);
     } else {
-      cartItem.favorite = true;
+      Object.assign(cartItem, {
+        favorite: true
+      });
       commit("ADD_FAVORITE_ITEM", cartItem);
       localStorage.favoriteItems = JSON.stringify(state.favoriteItems);
     }

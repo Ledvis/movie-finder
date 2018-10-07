@@ -10,7 +10,8 @@ Vue.use(VueRouter);
 
 const router = new VueRouter({
   mode: "history",
-  routes: [{
+  routes: [
+    {
       path: "/movie-finder/",
       redirect: "/movie-finder/movies"
     },
