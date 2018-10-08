@@ -55,12 +55,12 @@
     <p class="favorite-empty-text has-text-centered" v-if="favoriteItems.length === 0">
       Add some items to the favorite list!
     </p>
-    <ul>
+    <ul class="favorite-list">
       <li class="favorite-item" v-for="favoriteItem in favoriteItems" v-bind:key="favoriteItem.id">
         <FavoriteListItem v-bind:item="favoriteItem"/>
       </li>
       <div class="favorite-details">
-        <p>Total Quantity:
+        <p class="favorite-total">Total Quantity:
           <span class="has-text-weight-bold">{{favoriteItemsQuantity}}</span>
         </p>
         <button class="favorite-remove-all--text" v-on:click="removeAllFavoriteItems" v-bind:disabled="favoriteItems.length === 0">

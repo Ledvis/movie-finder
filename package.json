@@ -9,7 +9,10 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "test": "vue-cli-service test:unit tests/unit/components",
+    "test:watch": "vue-cli-service test:unit tests/unit/components --watch",
+    "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -21,11 +24,15 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0",
     "@vue/cli-plugin-eslint": "^3.0.0",
+    "@vue/cli-plugin-unit-mocha": "^3.0.4",
     "@vue/cli-service": "^3.0.0",
+    "@vue/test-utils": "^1.0.0-beta.25",
     "array-move": "^1.0.0",
+    "chai": "^4.2.0",
     "eslint-config-prettier": "^3.1.0",
     "eslint-plugin-prettier": "^2.7.0",
     "gh-pages": "^2.0.1",
+    "mocha": "^5.2.0",
     "vue-template-compiler": "^2.5.17"
   },
   "eslintConfig": {
