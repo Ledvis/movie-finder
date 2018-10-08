@@ -46,7 +46,7 @@
       <span class="autocomplete-error">{{ errors.first('min_field') }}</span>
       <ul class="autocomplete-results" v-show="isOpen && search.length !== 0">
         <li class="autocomplete-result" v-bind:class="{ 'is-active': index === arrowCounter }" v-for="(result, index) in results" v-bind:key="index">
-          <router-link v-bind:to="`/movie-finder/movies/${result.id}`">{{result.title}}</router-link>
+          <router-link v-bind:to="`/movies/${result.id}`">{{result.title}}</router-link>
         </li>
       </ul>
     </div>
@@ -89,7 +89,7 @@ export default {
     },
     onEnter() {
       this.$router.push(
-        `/movie-finder/movies/${this.results[this.arrowCounter].id}`
+        `/movies/${this.results[this.arrowCounter].id}`
       );
       this.isOpen = false;
       this.arrowCounter = -1;

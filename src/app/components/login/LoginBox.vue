@@ -26,7 +26,7 @@ export default {
   methods: {
     login() {
       this.$store.dispatch("login").then(() => {
-        this.$router.push("/movie-finder/movies");
+        this.$router.push("/movies");
       });
     }
   },

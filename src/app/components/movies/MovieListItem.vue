@@ -76,7 +76,7 @@
     </span>
     <div class="movie-list-item__details">
       <h1 class="title is-4">
-        <router-link class="movie-list-item__link" v-bind:to="`/movie-finder/movies/${movie.id}`">{{ movie.title }}</router-link>
+        <router-link class="movie-list-item__link" v-bind:to="`/movies/${movie.id}`">{{ movie.title }}</router-link>
         <p class="tag movie-list-item__tag" v-for="(genreId, index) in movie.genre_ids" v-bind:key="index">
           <MovieGenre v-bind:genre="getGenre(genreId)" v-if="genres"/>
         </p>
